@@ -1,0 +1,34 @@
+     1                                  section .text
+     2                                      global _start
+     3                                  _start:
+     4 00000000 B909000000                  mov ecx, 9
+     5 00000005 C605[00000000]00            mov [num], byte 0
+     6                                  lo:
+     7 0000000C B804000000                  mov eax, 4
+     9 00000016 51                          push ecx
+    10 00000017 8B0D[00000000]              mov ecx, [num]
+    11 0000001D 41                          inc ecx
+    12 0000001E 890D[00000000]              mov [num], ecx
+    13 00000024 8005[00000000]30            add [num], byte '0'
+    14 0000002B B9[00000000]                mov ecx, num
+    15 00000030 BA01000000                  mov edx, 1
+    16 00000035 CD80                        int 0x80
+    17 00000037 802D[00000000]30            sub [num], byte '0'
+    18 0000003E 59                          pop ecx
+    19 0000003F E2CB                        loop lo
+    20                                  
+    21 00000041 B804000000              mov eax, 4
+    22 00000046 BB01000000              mov ebx, 1
+    23 0000004B B9[00000000]            mov ecx, new_str
+    24 00000050 BA01000000              mov edx, 1
+    25 00000055 CD80                    int 0x80
+    26                                  
+    27 00000057 B801000000              mov eax, 1
+    28 0000005C BB00000000              mov ebx, 0
+    29 00000061 CD80                    int 0x80
+    30                                  
+    31                                  section .data
+    32 00000000 0A                          new_str db 0xA
+    33                                  
+    34                                  section .bss
+    35 00000000 <res 00000001>              num resb 1
