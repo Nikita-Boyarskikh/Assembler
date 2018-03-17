@@ -1,0 +1,2 @@
+%use ifunc
+%use fp
