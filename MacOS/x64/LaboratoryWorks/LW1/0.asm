@@ -18,10 +18,8 @@ _main:
     ret
 
 section .data
-    A dd -30
-    B dd 21
-    
-    fmt db '%d',10,0
+    A dq -30
+    B dq 21
 
 section .bss
-    X: resb 1
+    X: resq 1
