@@ -20,11 +20,20 @@
     syscall
 %endmacro
 
-%macro NEWLINE 0.nolist
-    section .data
-        new_line db 10
-    section .text
-        WRITE_LINE new_line, 1
+%macro PRINTF 2.nolist
+extern _printf
+    mov rsi, %1
+    mov rdi, %2
+    xor rax, rax
+    call _printf
+%endmacro
+
+%macro SCANF 2.nolist
+extern _scanf
+    mov rsi, %1
+    mov rdi, %2
+    xor rax, rax
+    call _scanf
 %endmacro
 
 %endif ; IO_INC
